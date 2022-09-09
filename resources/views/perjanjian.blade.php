@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
+
 @section('content')
+
+
     
     <table>
         <tr>
