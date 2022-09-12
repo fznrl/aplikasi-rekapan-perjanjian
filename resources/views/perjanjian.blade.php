@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    
+    {{ $title }}
     <table>
         <tr>
             <th>Uraian</th>
