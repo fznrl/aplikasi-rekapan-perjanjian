@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'sewa-rumah'
         ]);
 
-        Perjanjian::factory(20)->create();
+        Perjanjian::factory()->create();
 
     }
 }

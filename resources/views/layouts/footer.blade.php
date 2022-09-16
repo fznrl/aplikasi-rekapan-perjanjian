@@ -1,12 +1,12 @@
 <footer class="main-footer">
-    <strong>Pelindo IV | SBU Marine Services</strong>
-  </footer>
+  <strong>Pelindo 4 | SBU Marine Services</strong>
+</footer>
 
-  <!-- Control Sidebar -->
+  {{-- <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
-  <!-- /.control-sidebar -->
+  <!-- /.control-sidebar --> --}}
 </div>
 <!-- ./wrapper -->
 

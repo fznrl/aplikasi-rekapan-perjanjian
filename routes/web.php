@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Perjanjian;
 use App\Http\Controllers\PerjanjianController;
-use App\Models\category;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
