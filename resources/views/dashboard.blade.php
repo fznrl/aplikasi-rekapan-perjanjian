@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>{{$title}}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,6 +29,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              <button type="button" class="btn btn-success mb-2">Tambah +</button>
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -40,6 +41,7 @@
                     <th>Wilayah</th>
                     <th>Kegiatan</th>
                     <th>Keterangan</th>
+                    <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,6 +55,10 @@
                         <td>{{ $perjanjian->wilayah }}</td>
                         <td>{{ $perjanjian->kegiatan }}</td>
                         <td>{{ $perjanjian->keterangan }}</td>
+                        <td>
+                          <button type="button" class="btn btn-danger mt-3 mb-3">Hapus</button> 
+                          <button type="button" class="btn btn-warning mt-3 mb-3">Ubah</button>
+                        </td>
                     </tr> 
                     @endforeach
                 </tbody>

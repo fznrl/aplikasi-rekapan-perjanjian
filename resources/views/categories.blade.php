@@ -9,7 +9,7 @@
             <div class="row">
                 @foreach ($categories as $category)
                     <div class="col-md-4">
-                       <a href="/categories/{{ $category->slug }}" class="text-decoration-none">{{ $category->name }}</a> 
+                       <a href="{{ route('perjanjian', ['category'=>$category->slug]) }}" class="text-decoration-none">{{ $category->name }}</a> 
                     </div>
                 @endforeach
             </div>

@@ -16,18 +16,20 @@ use App\Models\Category;
 |
 */
 
-Route::get('/', [PerjanjianController::class, 'index']);
+Route::get('/', [PerjanjianController::class, 'index'])->name('dashboard');
 
 Route::get('/categories', function() {
     return view('categories', [
         'title' => 'Categories',
         'categories' => Category::all()
     ]);
-});
+})->name('kategori');
 
-Route::get('/categories/{category:slug}', function(Category $category) {
-    return view('perjanjian', [
-        'title' => "Perjanjian By Category : $category->name",
-        'perjanjians' => $category->perjanjian
-    ]);
-});
+// Route::get('/categories/{category:slug}', unction(Category $category) {
+//     return view('perjanjian', [
+//         'title' => "Perjanjian By Category : $category->name",
+//         'perjanjians' => $category->perjanjian
+//     ]);
+// })->name('category');
+
+Route::get('/{category:slug}', [PerjanjianController::class, 'getPerjanjian'])->name('perjanjian');
