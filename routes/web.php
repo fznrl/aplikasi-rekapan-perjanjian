@@ -18,6 +18,12 @@ use App\Models\Category;
 
 Route::get('/', [PerjanjianController::class, 'index'])->name('dashboard');
 
+Route::group(['prefix'=>'perjanjian'], function(){
+    Route::get('tambah', [PerjanjianController::class, 'create'])->name('tambah');
+    Route::post('store', [PerjanjianController::class, 'store'])->name('store');
+    Route::post('hapus/{perjanjian:id}', [PerjanjianController::class, 'destroy'])->name('hapus');
+});
+
 Route::get('/categories', function() {
     return view('categories', [
         'title' => 'Categories',
@@ -25,11 +31,5 @@ Route::get('/categories', function() {
     ]);
 })->name('kategori');
 
-// Route::get('/categories/{category:slug}', unction(Category $category) {
-//     return view('perjanjian', [
-//         'title' => "Perjanjian By Category : $category->name",
-//         'perjanjians' => $category->perjanjian
-//     ]);
-// })->name('category');
 
 Route::get('/{category:slug}', [PerjanjianController::class, 'getPerjanjian'])->name('perjanjian');
