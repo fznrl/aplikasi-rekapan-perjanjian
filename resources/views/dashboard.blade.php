@@ -67,10 +67,10 @@
                         <td nowrap="nowrap">
                           <div class="row">
                             <div class="col p-0">
-                              <a href="{{ route('store') }}" method="GET" class="badge bg-warning border-0" >Ubah</a>
+                              <a href="{{ route('edit', ['perjanjian'=>$perjanjian->id]) }}" method="GET" class="badge bg-warning border-0" >Ubah</a>
                             </div>
                             <div class="col p-0">
-                              <form action="{{ route('hapus', ['perjanjian'=>$perjanjian->id])}}" method="POST">
+                              <form action="{{ route('hapus', ['perjanjian'=>$perjanjian->id])}}" method="GET">
                                 @csrf
                                 <button class="badge bg-danger border-0" onclick="return confirm('yaking mau hapus data?')" >Hapus</button>
                               </form>
