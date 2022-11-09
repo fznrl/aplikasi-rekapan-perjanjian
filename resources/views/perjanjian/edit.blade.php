@@ -1,10 +1,8 @@
 @extends('../layouts/main')
 
 @push('css')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.css"/>
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css"> --}}
+    
 @endpush
-
 @section('content')
 <div class="content-wrapper">
     <section class="content">
@@ -14,34 +12,35 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="mt-5 mb 5">
-                                <h2 class="text-center mb-3">Tambah Data Perjanjian</h1>
+                                <h2 class="text-center mb-3">Ubah Data Perjanjian</h1>
                                 <a href="{{ route('dashboard') }}" class="btn btn-secondary mb-3">Kembali</a>
                                 <div class="card">
                                     <div class="card-body mb-5">
-                                        <form action="{{ route('store') }}" method="POST">
+                                        <form action="{{ route('update', ['perjanjian' => $perjanjian->id]) }}" method="POST">
+                                            @method('post')
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="category">Kategori</label>
                                                 <select name="category_id" class="form-control">
                                                     @foreach ($categories as $category)
-                                                    @if (old('category_id') == $category->id)
-                                                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                                    @if (old('$category_id', $perjanjian->category_id) == $category->id)
+                                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                                     @else
-                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                     @endif
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="uraian" class="form-label">Uraian</label>
-                                                <textarea aria-label="uraian" class="form-control @error('uraian') is-invalid @enderror" id="uraian" name="uraian">{{ old('uraian') }}</textarea>
+                                                <textarea class="form-control @error('uraian') is-invalid @enderror" id="uraian" name="uraian" rows="3" required >{{ old('uraian', $perjanjian->uraian) }}</textarea>
                                                 @error('uraian')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
                                                 <label for="no_pks" class="form-label">NO. PKS</label>
-                                                <input type="text" class="form-control @error('no_pks') is-invalid @enderror" id="no_pks" name="no_pks" value="{{ old('no_pks') }}">
+                                                <input type="text" class="form-control @error('no_pks') is-invalid @enderror" id="no_pks" name="no_pks" value="{{ old('no_pks', $perjanjian->no_pks) }}"">
                                                 @error('no_pks')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -50,7 +49,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="mulai" class="form-label">Mulai</label>
-                                                        <input type="date" class="form-control @error('mulai') is-invalid @enderror" id="mulai" name="mulai" value="{{ old('mulai') }}">
+                                                        <input type="date" class="form-control @error('mulai') is-invalid @enderror" id="mulai" name="mulai" value="{{ old('mulai', $perjanjian->mulai) }}">
                                                         @error('mulai')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
@@ -59,7 +58,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="berakhir" class="form-label">Berakhir</label>
-                                                        <input type="date" class="form-control @error('berakhir') is-invalid @enderror" id="berakhir" name="berakhir" value="{{ old('berakhir') }}">
+                                                        <input type="date" class="form-control @error('berakhir') is-invalid @enderror" id="berakhir" name="berakhir" value="{{ old('berakhir', $perjanjian->berakhir) }}">
                                                         @error('berakhir')
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
@@ -68,21 +67,21 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="wilayah" class="form-label">Wilayah</label>
-                                                <input type="text" class="form-control @error('wilayah') is-invalid @enderror" id="wilayah" name="wilayah" value="{{ old('wilayah') }}">
+                                                <input type="text" class="form-control @error('wilayah') is-invalid @enderror" id="wilayah" name="wilayah" value="{{ old('wilayah', $perjanjian->wilayah) }}">
                                                 @error('wilayah')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
                                                 <label for="kegiatan" class="form-label">Kegiatan</label>
-                                                <input type="text" class="form-control @error('kegiatan') is-invalid @enderror" id="kegiatan" name="kegiatan" value="{{ old('kegiatan') }}">
+                                                <input type="text" class="form-control @error('kegiatan') is-invalid @enderror" id="kegiatan" name="kegiatan" value="{{ old('kegiatan', $perjanjian->kegiatan) }}">
                                                 @error('kegiatan')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
                                                 <label for="keterangan" class="form-label">Keterangan</label>
-                                                <input type="text" class="form-control @error('kegiatan') is-invalid @enderror" id="keterangan" name="keterangan" value="{{ old('keterangan') }}">
+                                                <input type="text" class="form-control @error('kegiatan') is-invalid @enderror" id="keterangan" name="keterangan" value="{{ old('keterangan', $perjanjian->keterangan) }}">
                                                 @error('keterangan')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror

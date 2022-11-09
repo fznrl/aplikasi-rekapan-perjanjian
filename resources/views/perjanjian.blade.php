@@ -29,10 +29,11 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <button type="button" class="btn btn-success mb-2">Tambah +</button>
-              <table id="example2" class="table table-bordered table-hover">
+              <a href="{{ route('tambah') }}" class="btn btn-primary mb-3">Tambah Data +</a>
+              <table id="myTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
+                    <th style="width: 5px">No.</th>
                     <th>Uraian</th>
                     <th>NO. PKS</th>
                     <th>Mulai</th>
@@ -45,7 +46,8 @@
                 </thead>
                 <tbody>
                     @foreach ($perjanjians as $perjanjian)
-                    <tr>
+                    <tr class="text-center">
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $perjanjian->uraian }}</td>
                         <td>{{ $perjanjian->no_pks }}</td>
                         <td>{{ $perjanjian->mulai }}</td>
@@ -53,9 +55,18 @@
                         <td>{{ $perjanjian->wilayah }}</td>
                         <td>{{ $perjanjian->kegiatan }}</td>
                         <td>{{ $perjanjian->keterangan }}</td>
-                        <td>
-                          <button type="button" class="btn btn-danger mt-3">Hapus</button> 
-                          <button type="button" class="btn btn-warning mt-3">Ubah</button>
+                        <td nowrap="nowrap">
+                          <div class="row">
+                            <div class="col p-0">
+                              <a href="{{ route('edit', ['perjanjian'=>$perjanjian->id]) }}" method="GET" class="badge bg-warning border-0" >Ubah</a>
+                            </div>
+                            <div class="col p-0">
+                              <form action="{{ route('hapus', ['perjanjian'=>$perjanjian->id])}}" method="GET">
+                                @csrf
+                                <button class="badge bg-danger border-0" onclick="return confirm('yaking mau hapus data?')" >Hapus</button>
+                              </form>
+                            </div>
+                          </div>
                         </td>
                     </tr> 
                     @endforeach

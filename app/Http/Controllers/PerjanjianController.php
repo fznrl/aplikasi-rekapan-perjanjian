@@ -11,7 +11,7 @@ class PerjanjianController extends Controller
 {
     public function index() {
         return view('dashboard', [
-            "title" => "Rekapan Perjanjian",
+            "title" => "Dashboard",
             "perjanjians" => Perjanjian::latest()->get()
         ]);
     }
@@ -56,12 +56,32 @@ class PerjanjianController extends Controller
 
     }
 
-    public function edit(){
+    public function edit(Perjanjian $perjanjian){
 
+        return view('perjanjian.edit', [
+            'perjanjian' => $perjanjian,
+            'categories' => Category::all(),
+            'perjanjians' => Perjanjian::all()
+        ]);
     }
 
 
-    public function update(){
+    public function update(Request $request, Perjanjian $perjanjian){
+
+        $validateData = $request->validate([
+            'category_id' => 'required',
+            'uraian' => 'required',
+            'no_pks' => 'required',
+            'mulai' => 'required',
+            'berakhir' => 'required',
+            'wilayah' => 'required',
+            'kegiatan' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $perjanjian->update($validateData);
+
+        return redirect('/')->with('success', 'Data Berhasil Diubah!');
 
     }
 

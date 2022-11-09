@@ -46,6 +46,7 @@
     document.getElementById("body").classList.toggle("sidebar-collapse")
   }
 </script>
+<script src="https://code.jquery.com/jquery-1.4.2.js"></script>
 @stack('scripts')
 </body>
 </html>

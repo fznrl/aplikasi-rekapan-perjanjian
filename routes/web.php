@@ -21,9 +21,10 @@ Route::get('/', [PerjanjianController::class, 'index'])->name('dashboard');
 Route::group(['prefix'=>'perjanjian'], function(){
     Route::get('tambah', [PerjanjianController::class, 'create'])->name('tambah');
     Route::post('store', [PerjanjianController::class, 'store'])->name('store');
-    Route::post('hapus/{perjanjian:id}', [PerjanjianController::class, 'destroy'])->name('hapus');
+    Route::get('hapus/{perjanjian:id}', [PerjanjianController::class, 'destroy'])->name('hapus');
+    Route::get('edit/{perjanjian:id}', [PerjanjianController::class, 'edit'])->name('edit');
+    Route::post('update/{perjanjian:id}', [PerjanjianController::class, 'update'])->name('update');
 });
-
 Route::get('/categories', function() {
     return view('categories', [
         'title' => 'Categories',
