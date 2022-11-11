@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\Perjanjian;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class PerjanjianExport implements FromCollection
+class PerjanjianExport implements FromCollection, WithHeadings
 {/**
     * @return \Illuminate\Support\Collection
     */
@@ -20,6 +21,6 @@ class PerjanjianExport implements FromCollection
      */
     public function headings(): array
     {
-        return ["ID Kategori", "URAIAN", "NO PKS", "MULAI", "BERAKHIR", "WILAYAH", "KEGIATAN", "KETERANGAN"];
+        return ["id", "uraian", "no_pks", "mulai", "berakhir", "wilayah", "kegiatan", "keterangan"];
     }
 }

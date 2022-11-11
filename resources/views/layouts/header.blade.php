@@ -43,14 +43,6 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <form action="{{ route('logout') }}" method="POST">
-            @method('post')
-            @csrf
-            <button type="submit" class="dropdown-item">
-              <i class="fa-solid fa-right-from-bracket"></i>Logout</button>
-          </form>
-        </li>
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
@@ -77,6 +69,14 @@
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
+        </li>
+        <li class="nav-item dropdown">
+          <form action="{{ route('logout') }}" method="POST">
+            @method('post')
+            @csrf
+            <button type="submit" class="dropdown-item">
+              <i class="fa-solid fa-right-from-bracket"></i>Logout</button>
+          </form>
         </li>
       </ul>
     </nav>

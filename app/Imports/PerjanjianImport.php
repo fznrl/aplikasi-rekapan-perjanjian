@@ -22,14 +22,10 @@ class PerjanjianImport implements ToModel, WithHeadingRow
             'no_pks'          => $row['no_pks'], 
             'mulai'           => date("Y-m-d", strtotime($row['mulai'])),
             'berakhir'        => date("Y-m-d", strtotime($row['berakhir'])),
-            'wilayah'         => $row['wilayah'],
+            'wilayah'         => $row['wilayah'],   
             'kegiatan'        => $row['kegiatan'],
             'keterangan'      => $row['keterangan']
         ]);
     }
 
-    /**
-     */
-    public function __construct() {
-    }
 }

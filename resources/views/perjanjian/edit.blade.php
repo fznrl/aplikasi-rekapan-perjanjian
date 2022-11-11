@@ -13,7 +13,8 @@
                         <div class="card-body">
                             <div class="mt-5 mb 5">
                                 <h2 class="text-center mb-3">Ubah Data Perjanjian</h1>
-                                <a href="{{ route('dashboard') }}" class="btn btn-secondary mb-3">Kembali</a>
+                                <a href="{{ route('dashboard') }}" class="btn btn-secondary mb-3">
+                                    <i class="fa-solid fa-arrow-left"></i> Kembali</a>
                                 <div class="card">
                                     <div class="card-body mb-5">
                                         <form action="{{ route('update', ['perjanjian' => $perjanjian->id]) }}" method="POST">
@@ -86,7 +87,7 @@
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <button type="submit" class="btn btn-primary d-block float-right">Simpan</button>
+                                            <button type="submit" class="btn btn-primary d-block float-right"><i class="fa-regular fa-floppy-disk"></i> Simpan</button>
                                         </form>
                                     </div>
                                 </div>
