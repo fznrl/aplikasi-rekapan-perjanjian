@@ -98,21 +98,22 @@ class PerjanjianController extends Controller
 
     }
 
-    public function export(){
-
-        return Excel::download(new PerjanjianExport, 'perjanjian.xlsx');
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function export() 
+    {
+        return Excel::download(new PerjanjianExport, 'Perjanjian.xlsx');
     }
 
-    public function import(Request $request){
+    /**
+    * @return \Illuminate\Support\Collection
+    */
 
-        $file = $request->file('file');
-        $namaFile = $file->getClientOriginalName();
-        $path = 'public/DataPerjanjian/';
-        $file->move($path, $namaFile);
-        
-        Excel::import(new PerjanjianImport, public_path($path.$namaFile));
-
+    public function import() 
+    {
+        Excel::import(new PerjanjianImport,request()->file('file'));
         return back();
     }
-    
 }
+    

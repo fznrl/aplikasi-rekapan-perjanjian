@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Perjanjian;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,15 +16,16 @@ class PerjanjianImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        // dd($row);
         return new Perjanjian([
-            'uraian' => $row['uraian'],
-            'no_pks' => $row['no_pks'],
-            'mulai' => $row['mulai'],
-            'berakhir' => $row['berakhir'],
-            'wilayah' => $row['wilayah'],
-            'kegiatan' => $row['kegiatan'],
-            'keterangan' => $row['keterangan']
+            'category_id'     => $row['id'],
+            'uraian'          => $row['uraian'],
+            'no_pks'          => $row['no_pks'], 
+            'mulai'           => date("Y-m-d", strtotime($row['mulai'])),
+            'berakhir'        => date("Y-m-d", strtotime($row['berakhir'])),
+            'wilayah'         => $row['wilayah'],   
+            'kegiatan'        => $row['kegiatan'],
+            'keterangan'      => $row['keterangan']
         ]);
     }
+
 }
