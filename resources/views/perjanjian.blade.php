@@ -6,33 +6,6 @@
 @endpush
 
 @section('content')
-<<<<<<< HEAD
-    {{ $title }}
-    <table>
-        <tr>
-            <th>Uraian</th>
-            <th>NO. PKS</th>
-            <th>Mulai</th>
-            <th>Berakhir</th>
-            <th>Wilayah</th>
-            <th>Kegiatan</th>
-            <th>Keterangan</th>
-        </tr>
-        @foreach ($perjanjians as $perjanjian)
-        <tr>
-            <td>{{ $perjanjian->uraian }}</td>
-            <td>{{ $perjanjian->no_pks }}</td>
-            <td>{{ $perjanjian->mulai }}</td>
-            <td>{{ $perjanjian->berakhir }}</td>
-            <td>{{ $perjanjian->wilayah }}</td>
-            <td>{{ $perjanjian->kegiatan }}</td>
-            <td>{{ $perjanjian->keterangan }}</td>
-        </tr> 
-        @endforeach
-        
-    </table>
-@endsection
-=======
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -61,7 +34,28 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <a href="{{ route('tambah') }}" class="btn btn-primary mb-3">Tambah Data +</a>
+              <div class="float-none">
+                <a href="{{ route('tambah') }}" class="btn btn-primary mb-3">Tambah Data <i class="fa-solid fa-plus"></i></a>
+                <a href="#" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-file-import"></i> Import</a>
+                <a href="{{ route('perjanjian.export') }}" class="btn btn-info mb-3"><i class="fa-solid fa-file-export"></i> Export File</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <p class="modal-title fs-5" id="exampleModalLabel">Import File Perjanjian</p>
+                        <button type="button" class="btn-close fa-solid fa-xmark" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="{{ route('perjanjian.import') }}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          <input type="file" name="file" class="form-control mt-2 mb-2">
+                          <button class="btn btn-success">Import</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <table id="myTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -142,4 +136,3 @@
 //  
 </script>
 @endpush
->>>>>>> fff10b8b0ead902b855c4a432b39d968cfc5d109

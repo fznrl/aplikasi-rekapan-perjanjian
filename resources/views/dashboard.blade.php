@@ -154,15 +154,29 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <form action="{{ route('perjanjian.import') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="file" name="file" class="form-control">
-                <br>
-                <button class="btn btn-primary">Import User Data</button>
-            </form>
-              <a href="{{ route('tambah') }}" class="btn btn-primary mb-3">Tambah Data</a>
+              <div class="float-none">
+                <a href="{{ route('tambah') }}" class="btn btn-primary mb-3">Tambah Data <i class="fa-solid fa-plus"></i></a>
+                <a href="#" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-file-import"></i> Import</a>
+                <a href="{{ route('perjanjian.export') }}" class="btn btn-info mb-3"><i class="fa-solid fa-file-export"></i> Export File</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <p class="modal-title fs-5" id="exampleModalLabel">Import File Perjanjian</p>
+                        <button type="button" class="btn-close fa-solid fa-xmark" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="{{ route('perjanjian.import') }}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          <input type="file" name="file" class="form-control mt-2 mb-2">
+                          <button class="btn btn-success">Import</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <table id="myTable" class="table table-bordered table-riped" role="grid" style="width: 100%">
-                <a class="btn btn-danger float-end" href="{{ route('perjanjian.export') }}">Export User Data</a>
                 <thead>
                 <tr>
                     <th style="width: 5px">No.</th>
