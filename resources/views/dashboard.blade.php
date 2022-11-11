@@ -154,9 +154,21 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <a href="{{ route('tambah') }}" class="btn btn-primary mb-3">Tambah Data +</a>
+              <a href="{{ route('tambah') }}" class="btn btn-primary mb-3">Tambah Data</a>
+              <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" class="form-control">
+                <br>
+                <button class="btn btn-primary">Import File</button>
+              </form>
               <table id="myTable" class="table table-bordered table-riped" role="grid" style="width: 100%">
                 <thead>
+                  <tr>
+                    <th colspan="3">
+                      List Of Users
+                      <a class="btn btn-danger float-end" href="{{ route('export') }}">Export User Data</a>
+                  </th>
+                  </tr>
                 <tr>
                     <th style="width: 5px">No.</th>
                     <th>Kategori</th>
@@ -186,12 +198,12 @@
                           <center>
                             <div class="row" style="width: max-content">
                               <div class="col p-1">
-                                <a href="{{ route('edit', ['perjanjian'=>$perjanjian->id]) }}" method="GET" class="badge bg-warning border-0" >Ubah</a>
+                                <a href="{{ route('edit', ['perjanjian'=>$perjanjian->id]) }}" method="GET" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                               </div>
                               <div class="col p-1">
                                 <form action="{{ route('hapus', ['perjanjian'=>$perjanjian->id])}}" method="GET">
                                   @csrf
-                                  <button class="badge bg-danger border-0" onclick="return confirm('yaking mau hapus data?')" >Hapus</button>
+                                  <button class="btn btn-danger" onclick="return confirm('yaking mau hapus data?')"><i class="fa-solid fa-trash"></i> </button>
                                 </form>
                               </div>
                             </div>

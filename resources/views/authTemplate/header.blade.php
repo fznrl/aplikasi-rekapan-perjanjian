@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ asset('') }}assets/index2.html"><b>Admin</b>LTE</a>
+    <p><b>SBU Marine Service</b></p>
   </div>
   <!-- /.login-logo -->
   <div class="card">

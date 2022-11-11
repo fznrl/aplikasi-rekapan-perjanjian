@@ -25,6 +25,9 @@ Route::group(['prefix'=>'/'], function(){
     Route::get('register', [AuthController::class, 'register'])->name('register');
     Route::post('register', [AuthController::class, 'storeRegister'])->name('store_register');
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+    Route::get('perjanjian-export', [PerjanjianController::class, "export"])->name('export');
+    Route::post('perjanjian-import', [PerjanjianController::class, 'import'])->name('import');
 });
 
 Route::group(['prefix'=>'perjanjian'], function(){
@@ -35,9 +38,5 @@ Route::group(['prefix'=>'perjanjian'], function(){
     Route::post('update/{perjanjian:id}', [PerjanjianController::class, 'update'])->name('update');
     Route::get('/{slug}/{id}', [PerjanjianController::class, 'getPerjanjian'])->name('perjanjian');
 });
-// Route::get('/categories', function() {
-//     return view('categories', [
-//         'title' => 'Categories',
-//         'categories' => Category::all()
-//     ]);
-// })->name('kategori');
+
+

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PerjanjianExport;
+use App\Imports\PerjanjianImport;
 use App\Models\Category;
 use App\Models\Perjanjian;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class PerjanjianController extends Controller
@@ -93,6 +96,23 @@ class PerjanjianController extends Controller
         
         return redirect('dashboard')->with('success', 'Data Berhasil Dihapus!');
 
+    }
+
+    public function export(){
+
+        return Excel::download(new PerjanjianExport, 'perjanjian.xlsx');
+    }
+
+    public function import(Request $request){
+
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $path = 'public/DataPerjanjian/';
+        $file->move($path, $namaFile);
+        
+        Excel::import(new PerjanjianImport, public_path($path.$namaFile));
+
+        return back();
     }
     
 }
