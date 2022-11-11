@@ -3,8 +3,9 @@
 @push('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
- <!-- Link Swiper's CSS -->
- {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/> --}}
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="resources/css/swiper.css">
 @endpush
 
 @section('content')
@@ -20,11 +21,12 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+
     <section class="content">
-      <div class="container-fluid">
+      <div class="swiper mySwiper container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
-         <div class="col-lg-3 col-6">
+        <div class="swiper-wrapper">
+         <div class="swiper-slide">
            <!-- small box -->
            <div class="small-box bg-info">
              <div class="inner">
@@ -39,7 +41,7 @@
            </div>
          </div>
          <!-- ./col -->
-         <div class="col-lg-3 col-6">
+         <div class="swiper-slide">
            <!-- small box -->
            <div class="small-box bg-success">
              <div class="inner">
@@ -54,7 +56,7 @@
            </div>
          </div>
          <!-- ./col -->
-         <div class="col-lg-3 col-6">
+         <div class="swiper-slide">
            <!-- small box -->
            <div class="small-box bg-warning">
              <div class="inner">
@@ -69,7 +71,7 @@
            </div>
          </div>
          <!-- ./col -->
-         <div class="col-lg-3 col-6">
+         <div class="swiper-slide">
            <!-- small box -->
            <div class="small-box bg-danger">
              <div class="inner">
@@ -83,10 +85,55 @@
              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
            </div>
          </div>
+         <div class="swiper-slide">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
          <!-- ./col -->
        </div>
        <!-- /.row -->
        <!-- Main row -->
+       <div class="swiper-button-next"></div>
+       <div class="swiper-button-prev"></div>
+       <div class="swiper-pagination"></div>
       </div>
     </section>
     <section class="content">
@@ -192,5 +239,24 @@
 // $(document).ready( function () {
 //     $('#myTable').DataTable();
 // } );
+</script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    freeMode: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 </script>
 @endpush
