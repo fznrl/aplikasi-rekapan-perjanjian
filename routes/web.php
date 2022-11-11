@@ -19,11 +19,12 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::group(['prefix'=>'/'], function(){
-    Route::get('/', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'authenticate'])->name('authLogin');
+    Route::get('dashboard', [PerjanjianController::class, 'index'])->middleware('auth')->name('dashboard');
+    Route::get('', [AuthController::class, 'login'])->middleware('guest')->name('login');
+    Route::post('login', [AuthController::class, 'authenticate'])->name('authLogin');
     Route::get('register', [AuthController::class, 'register'])->name('register');
     Route::post('register', [AuthController::class, 'storeRegister'])->name('store_register');
-    Route::get('dashboard', [PerjanjianController::class, 'index'])->name('dashboard');
+    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 });
 
 Route::group(['prefix'=>'perjanjian'], function(){

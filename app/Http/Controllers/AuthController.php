@@ -22,20 +22,35 @@ class AuthController extends Controller
         dd($request);
     }
 
-    public function authenticate(Request $request){
-
+    public function authenticate(Request $request)
+    {
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
-            'password' => 'required'
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('dashboard');
+        }
+ 
+        // return back()->withErrors([
+        //     'email' => 'The provided credentials do not match our records.',
+        // ])->onlyInput('email');
 
-        dd('berhasil login!!!');
-        // if(Auth::attempt($credentials)){
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('/dashboard');
-        // }
-
-        // return back();
+        return back()->with('loginError', 'Login Gagal!!');
+    }
+    
+    public function logout(Request $request){
+        
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+ 
+        $request->session()->regenerateToken();
+ 
+        return redirect()->route('login');
 
     }
 }

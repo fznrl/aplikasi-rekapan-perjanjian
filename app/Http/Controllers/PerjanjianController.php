@@ -49,7 +49,7 @@ class PerjanjianController extends Controller
 
         Perjanjian::create($validateData);
 
-        return redirect('/')->with('success', 'Data Berhasil Ditambahkan!');
+        return redirect('dashboard')->with('success', 'Data Berhasil Ditambahkan!');
 
     }
 
@@ -82,7 +82,7 @@ class PerjanjianController extends Controller
 
         $perjanjian->update($validateData);
 
-        return redirect('/')->with('success', 'Data Berhasil Diubah!');
+        return redirect('dashboard')->with('success', 'Data Berhasil Diubah!');
 
     }
 
@@ -91,7 +91,7 @@ class PerjanjianController extends Controller
         // $perjanjian = Perjanjian::find($id);
         Perjanjian::destroy($perjanjian->id);
         
-        return redirect('/')->with('success', 'Data Berhasil Dihapus!');
+        return redirect('dashboard')->with('success', 'Data Berhasil Dihapus!');
 
     }
     
