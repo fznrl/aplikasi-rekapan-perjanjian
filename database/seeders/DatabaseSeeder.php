@@ -59,7 +59,13 @@ class DatabaseSeeder extends Seeder
             'slug' => 'sewa-rumah'
         ]);
 
-        Perjanjian::factory(20)->create();
+        Perjanjian::factory()->create();
+
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin123@gmail.com',
+            'password' => bcrypt('admin123')
+        ]);
 
     }
 }

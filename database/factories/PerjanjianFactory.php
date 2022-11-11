@@ -14,6 +14,11 @@ class PerjanjianFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
     public function definition()
     {
         return [

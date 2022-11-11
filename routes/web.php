@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Models\Category;
 use App\Models\Perjanjian;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PerjanjianController;
-use App\Models\category;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +18,26 @@ use App\Models\category;
 |
 */
 
-Route::get('/', [PerjanjianController::class, 'index']);
-
-Route::get('/categories', function() {
-    return view('categories', [
-        'title' => 'Categories',
-        'categories' => Category::all()
-    ]);
+Route::group(['prefix'=>'/'], function(){
+    Route::get('dashboard', [PerjanjianController::class, 'index'])->middleware('auth')->name('dashboard');
+    Route::get('', [AuthController::class, 'login'])->middleware('guest')->name('login');
+    Route::post('login', [AuthController::class, 'authenticate'])->name('authLogin');
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'storeRegister'])->name('store_register');
+    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 });
 
-Route::get('/categories/{category:slug}', function(Category $category) {
-    return view('perjanjian', [
-        'title' => "Perjanjian By Category : $category->name",
-        'perjanjians' => $category->perjanjian
-    ]);
+Route::group(['prefix'=>'perjanjian'], function(){
+    Route::get('tambah', [PerjanjianController::class, 'create'])->name('tambah');
+    Route::post('store', [PerjanjianController::class, 'store'])->name('store');
+    Route::get('hapus/{perjanjian:id}', [PerjanjianController::class, 'destroy'])->name('hapus');
+    Route::get('edit/{perjanjian:id}', [PerjanjianController::class, 'edit'])->name('edit');
+    Route::post('update/{perjanjian:id}', [PerjanjianController::class, 'update'])->name('update');
+    Route::get('/{slug}/{id}', [PerjanjianController::class, 'getPerjanjian'])->name('perjanjian');
 });
+// Route::get('/categories', function() {
+//     return view('categories', [
+//         'title' => 'Categories',
+//         'categories' => Category::all()
+//     ]);
+// })->name('kategori');
