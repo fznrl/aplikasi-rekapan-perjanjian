@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\Perjanjian;
-use App\Http\Controllers\PerjanjianController;
+use App\Http\Controllers\AuthController;
 use App\Models\Category;
+use App\Models\Perjanjian;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PerjanjianController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,13 @@ use App\Models\Category;
 |
 */
 
-Route::get('/', [PerjanjianController::class, 'index'])->name('dashboard');
+Route::group(['prefix'=>'/'], function(){
+    Route::get('/', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('authLogin');
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'storeRegister'])->name('store_register');
+    Route::get('dashboard', [PerjanjianController::class, 'index'])->name('dashboard');
+});
 
 Route::group(['prefix'=>'perjanjian'], function(){
     Route::get('tambah', [PerjanjianController::class, 'create'])->name('tambah');
@@ -24,13 +32,11 @@ Route::group(['prefix'=>'perjanjian'], function(){
     Route::get('hapus/{perjanjian:id}', [PerjanjianController::class, 'destroy'])->name('hapus');
     Route::get('edit/{perjanjian:id}', [PerjanjianController::class, 'edit'])->name('edit');
     Route::post('update/{perjanjian:id}', [PerjanjianController::class, 'update'])->name('update');
+    Route::get('/{slug}/{id}', [PerjanjianController::class, 'getPerjanjian'])->name('perjanjian');
 });
-Route::get('/categories', function() {
-    return view('categories', [
-        'title' => 'Categories',
-        'categories' => Category::all()
-    ]);
-})->name('kategori');
-
-
-Route::get('/{category:slug}', [PerjanjianController::class, 'getPerjanjian'])->name('perjanjian');
+// Route::get('/categories', function() {
+//     return view('categories', [
+//         'title' => 'Categories',
+//         'categories' => Category::all()
+//     ]);
+// })->name('kategori');

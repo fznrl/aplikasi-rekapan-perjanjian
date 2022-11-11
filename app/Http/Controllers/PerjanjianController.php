@@ -16,9 +16,10 @@ class PerjanjianController extends Controller
         ]);
     }
 
-    public function getPerjanjian(Category $category){
+    public function getPerjanjian($slug, $id){
+        $category = Category::whereId($id)->first();
         // dd($category);
-        $perjanjian = Perjanjian::where("category_id", $category->id)->get();
+        $perjanjian = Perjanjian::where("category_id", $id)->get();
         $data =  [
             "title" => $category->name,
             "perjanjians" => $perjanjian

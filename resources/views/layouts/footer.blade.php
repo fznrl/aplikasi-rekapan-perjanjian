@@ -1,19 +1,18 @@
-<footer class="main-footer">
-  <strong>Pelindo 4 | SBU Marine Services</strong>
-</footer>
+  <footer class="main-footer">
+    <strong>Pelindo 4 | SBU Marine Services</strong>
+  </footer>
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+  <aside class="control-sidebar control-sidebar-light">
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="assets/plugins/jquery/jquery.min.js"></script>
+
+<script src="{{ asset('') }}assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -39,14 +38,12 @@
 <!-- overlayScrollbars -->
 <script src="{{ asset('') }}assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
+<script src="{{ asset('') }}assets/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('') }}assets/dist/js/pages/dashboard.js"></script>
-<script>
-  function showSidebar(){
-    console.log("")
-    document.getElementById("body").classList.toggle("sidebar-collapse")
-  }
-</script>
-<script src="https://code.jquery.com/jquery-1.4.2.js"></script>
+<!-- AdminLTE for demo purposes -->
+{{-- <script src="{{ asset('') }}assets/dist/js/demo.js"></script> --}}
+<script src="https://kit.fontawesome.com/3ee3dd0ef8.js" crossorigin="anonymous"></script>
 @stack('scripts')
 </body>
 </html>

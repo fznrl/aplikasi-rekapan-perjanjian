@@ -61,5 +61,11 @@ class DatabaseSeeder extends Seeder
 
         Perjanjian::factory()->create();
 
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin123@gmail.com',
+            'password' => bcrypt('admin123')
+        ]);
+
     }
 }
