@@ -41,3 +41,8 @@ Route::group(['prefix'=>'perjanjian'], function(){
 //         'categories' => Category::all()
 //     ]);
 // })->name('kategori');
+
+Route::controller(PerjanjianController::class)->group(function(){
+    Route::get('perjanjian-export', 'export')->name('perjanjian.export');
+    Route::post('perjanjian-import', 'import')->name('perjanjian.import');
+});
