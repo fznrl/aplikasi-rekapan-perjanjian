@@ -12,7 +12,7 @@ class PerjanjianExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Perjanjian::select("category_id", "uraian", "no_pks", "mulai", "berakhir", "wilayah", "kegiatan", "keterangan")->get();
+        return Perjanjian::select("category_id", "uraian", "no_pks", "mulai", "berakhir", "sisa_waktu", "wilayah", "kegiatan", "keterangan")->get();
     }
     /**
      * Write code on Method
@@ -21,6 +21,6 @@ class PerjanjianExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["id", "uraian", "no_pks", "mulai", "berakhir", "wilayah", "kegiatan", "keterangan"];
+        return ["id", "uraian", "no_pks", "mulai", "berakhir", "sisa_waktu", "wilayah", "kegiatan", "keterangan"];
     }
 }

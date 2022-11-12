@@ -2,10 +2,16 @@
 
 namespace App\Imports;
 
+use Carbon;
+use DateTime;
 use App\Models\Perjanjian;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
 class PerjanjianImport implements ToModel, WithHeadingRow
 {
@@ -16,7 +22,8 @@ class PerjanjianImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new Perjanjian([
+        // dd($row);
+        $data = [
             'category_id'     => $row['id'],
             'uraian'          => $row['uraian'],
             'no_pks'          => $row['no_pks'], 
@@ -25,7 +32,15 @@ class PerjanjianImport implements ToModel, WithHeadingRow
             'wilayah'         => $row['wilayah'],   
             'kegiatan'        => $row['kegiatan'],
             'keterangan'      => $row['keterangan']
-        ]);
+        ];
+        $mulai = new DateTime($data['mulai']);
+        $akhir = new DateTime($data['berakhir']);
+        $sel = $akhir->diff($mulai)->days;
+        $data['sisa_waktu'] = $sel;
+        
+        return new Perjanjian($data);
+
+        
     }
 
 }

@@ -26,46 +26,81 @@
       <div class="swiper mySwiper container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+               @php
+                 $count = DB::table('perjanjians')->where('sisa_waktu', "<=", 30)->count();
+               @endphp
+               <h3>{{ $count }}</h3>
+ 
+               <p>Total Perjanjian Kurang dari 1 Bulan</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-exclamation"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
          <div class="swiper-slide">
            <!-- small box -->
            <div class="small-box bg-info">
              <div class="inner">
-               <h3>150</h3>
+              @php
+                $count = DB::table('perjanjians')->count();
+              @endphp
+               <h3>{{ $count }}</h3>
  
-               <p>New Orders</p>
+               <p>Total Perjanjian</p>
              </div>
              <div class="icon">
-               <i class="ion ion-bag"></i>
+              <i class="fa-solid fa-database"></i>
+              {{-- <i class="ion ion-bag"></i> --}}
              </div>
              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
            </div>
          </div>
+         @php
+            $category = new App\Models\Category;
+            $categoryList = $category::all();
+         @endphp
+
+         @foreach ($categoryList as $item)    
+          <div class="swiper-slide">
+            <!-- small box -->
+            <div class="small-box" style="background-color: rgba({{ rand(0,255) }}, {{ rand(0,255) }}, {{ rand(0,255) }}, 1)">
+              <div class="inner">
+                @php
+                  $count = DB::table('perjanjians')->where('category_id', $item->id)->count();
+                @endphp
+              <h3>{{ $count }}</h3>
+
+              <p>{{ $item->name }}</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-s"><i class="fa-solid fa-p"></i></i>
+                
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+         @endforeach
          <!-- ./col -->
-         <div class="swiper-slide">
-           <!-- small box -->
-           <div class="small-box bg-success">
-             <div class="inner">
-               <h3>53<sup style="font-size: 20px">%</sup></h3>
- 
-               <p>Bounce Rate</p>
-             </div>
-             <div class="icon">
-               <i class="ion ion-stats-bars"></i>
-             </div>
-             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-           </div>
-         </div>
-         <!-- ./col -->
+         {{-- <!-- ./col -->
          <div class="swiper-slide">
            <!-- small box -->
            <div class="small-box bg-warning">
              <div class="inner">
-               <h3>44</h3>
- 
-               <p>User Registrations</p>
+              @php
+                $count = DB::table('perjanjians')->where('category_id', 2)->count();
+              @endphp
+              <h3>{{ $count }}</h3>
+
+              <p>Novasi ke PMS</p>
              </div>
              <div class="icon">
-               <i class="ion ion-person-add"></i>
+              <i class="fa-solid fa-n"></i>
              </div>
              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
            </div>
@@ -75,23 +110,65 @@
            <!-- small box -->
            <div class="small-box bg-danger">
              <div class="inner">
-               <h3>65</h3>
- 
-               <p>Unique Visitors</p>
+              @php
+                $count = DB::table('perjanjians')->where('category_id', 3)->count();
+              @endphp
+              <h3>{{ $count }}</h3>
+
+              <p>Tuks dan Tersus</p>
              </div>
              <div class="icon">
-               <i class="ion ion-pie-graph"></i>
+              <i class="fa-solid fa-t"></i>
              </div>
              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
            </div>
          </div>
          <div class="swiper-slide">
           <!-- small box -->
-          <div class="small-box bg-danger">
+          <div class="small-box bg-info">
             <div class="inner">
-              <h3>65</h3>
+              @php
+                // $perjanjian = new App\Models\Perjanjian;
+                // $perjanjians = $perjanjian::all();
+                $count = DB::table('perjanjians')->where('category_id', 4)->count();
+              @endphp
+              <h3>{{ $count }}</h3>
 
-              <p>Unique Visitors</p>
+              <p>PT. ISMA</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              @php
+                $count = DB::table('perjanjians')->where('category_id', 5)->count();
+              @endphp
+              <h3>{{ $count }}</h3>
+
+              <p>Koperasi dan Arta</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <!-- small box -->
+          <div class="small-box bg-secondary">
+            <div class="inner">
+              @php
+                $count = DB::table('perjanjians')->where('category_id', 6)->count();
+              @endphp
+              <h3>{{ $count }}</h3>
+
+              <p>KUPP</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -103,9 +180,12 @@
           <!-- small box -->
           <div class="small-box bg-danger">
             <div class="inner">
-              <h3>65</h3>
+              @php
+                $count = DB::table('perjanjians')->where('category_id', 7)->count();
+              @endphp
+              <h3>{{ $count }}</h3>
 
-              <p>Unique Visitors</p>
+              <p>Sewa Rumah</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -113,21 +193,7 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <div class="swiper-slide">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         <!-- ./col -->
+         <!-- ./col --> --}}
        </div>
        <!-- /.row -->
        <!-- Main row -->
@@ -178,13 +244,14 @@
               </div>
               <table id="myTable" class="table table-bordered table-riped" role="grid" style="width: 100%">
                 <thead>
-                <tr>
+                <tr class="text-center">
                     <th style="width: 5px">No.</th>
                     <th>Kategori</th>
                     <th>Uraian</th>
                     <th>NO. PKS</th>
                     <th>Mulai</th>
                     <th>Berakhir</th>
+                    <th>Sisa Waktu</th>
                     <th>Wilayah</th>
                     <th>Kegiatan</th>
                     <th>Keterangan</th>
@@ -200,6 +267,7 @@
                         <td>{{ $perjanjian->no_pks }}</td>
                         <td>{{ $perjanjian->mulai }}</td>
                         <td>{{ $perjanjian->berakhir }}</td>
+                        <td>{{ $perjanjian->sisa_waktu.' hari'}}</td>
                         <td>{{ $perjanjian->wilayah }}</td>
                         <td>{{ $perjanjian->kegiatan }}</td>
                         <td>{{ $perjanjian->keterangan }}</td>
