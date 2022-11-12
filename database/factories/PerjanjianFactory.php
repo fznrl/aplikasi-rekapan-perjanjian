@@ -26,6 +26,7 @@ class PerjanjianFactory extends Factory
             'no_pks' => mt_rand(),
             'mulai' => $this->faker->dateTimeThisDecade(),
             'berakhir' => $this->faker->dateTimeThisDecade(),
+            'sisa_waktu' => 123,
             'wilayah' => $this->faker->word(),
             'kegiatan' => $this->faker->sentence(),
             'keterangan' => $this->faker->paragraph(),

@@ -58,12 +58,13 @@
               </div>
               <table id="myTable" class="table table-bordered table-hover">
                 <thead>
-                <tr>
+                <tr class="text-center">
                     <th style="width: 5px">No.</th>
                     <th>Uraian</th>
                     <th>NO. PKS</th>
                     <th>Mulai</th>
                     <th>Berakhir</th>
+                    <th>Sisa Waktu</th>
                     <th>Wilayah</th>
                     <th>Kegiatan</th>
                     <th>Keterangan</th>
@@ -78,21 +79,24 @@
                         <td>{{ $perjanjian->no_pks }}</td>
                         <td>{{ $perjanjian->mulai }}</td>
                         <td>{{ $perjanjian->berakhir }}</td>
+                        <td>{{ $perjanjian->sisa_waktu.' hari'}}</td>
                         <td>{{ $perjanjian->wilayah }}</td>
                         <td>{{ $perjanjian->kegiatan }}</td>
                         <td>{{ $perjanjian->keterangan }}</td>
                         <td nowrap="nowrap">
-                          <div class="row">
-                            <div class="col p-0">
-                              <a href="{{ route('edit', ['perjanjian'=>$perjanjian->id]) }}" method="GET" class="badge bg-warning border-0" >Ubah</a>
+                          <center>
+                            <div class="row" style="width: max-content">
+                              <div class="col p-1">
+                                <a href="{{ route('edit', ['perjanjian'=>$perjanjian->id]) }}" method="GET" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                              </div>
+                              <div class="col p-1">
+                                <form action="{{ route('hapus', ['perjanjian'=>$perjanjian->id])}}" method="GET">
+                                  @csrf
+                                  <button class="btn btn-danger" onclick="return confirm('yaking mau hapus data?')"><i class="fa-solid fa-trash"></i> </button>
+                                </form>
+                              </div>
                             </div>
-                            <div class="col p-0">
-                              <form action="{{ route('hapus', ['perjanjian'=>$perjanjian->id])}}" method="GET">
-                                @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('yaking mau hapus data?')" >Hapus</button>
-                              </form>
-                            </div>
-                          </div>
+                          </center>
                         </td>
                     </tr> 
                     @endforeach

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\PerjanjianExport;
-use App\Imports\PerjanjianImport;
+use DateTime;
 use App\Models\Category;
 use App\Models\Perjanjian;
 use Illuminate\Http\Request;
+use App\Exports\PerjanjianExport;
+use App\Imports\PerjanjianImport;
 use Maatwebsite\Excel\Facades\Excel;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -39,6 +40,7 @@ class PerjanjianController extends Controller
 
     public function store(Request $request){
 
+
         $validateData = $request->validate([
             'category_id' => 'required',
             'uraian' => 'required',
@@ -47,8 +49,13 @@ class PerjanjianController extends Controller
             'berakhir' => 'required',
             'wilayah' => 'required',
             'kegiatan' => 'required',
-            'keterangan' => 'required',
+            'keterangan' => '',
         ]);
+        $mulai = new DateTime($validateData['mulai']);
+        $akhir = new DateTime($validateData['berakhir']);
+        $sel = $akhir->diff($mulai)->days;
+
+        $validateData['sisa_waktu'] = $sel;
 
         Perjanjian::create($validateData);
 
