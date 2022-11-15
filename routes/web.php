@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Models\Category;
-use App\Models\Perjanjian;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PerjanjianController;
 use Illuminate\Support\Facades\Auth;
@@ -38,12 +36,7 @@ Route::group(['prefix'=>'perjanjian'], function(){
     Route::post('update/{perjanjian:id}', [PerjanjianController::class, 'update'])->name('update');
     Route::get('/{slug}/{id}', [PerjanjianController::class, 'getPerjanjian'])->name('perjanjian');
 });
-// Route::get('/categories', function() {
-//     return view('categories', [
-//         'title' => 'Categories',
-//         'categories' => Category::all()
-//     ]);
-// })->name('kategori');
+
 
 Route::controller(PerjanjianController::class)->group(function(){
     Route::get('perjanjian-export', 'export')->name('perjanjian.export');

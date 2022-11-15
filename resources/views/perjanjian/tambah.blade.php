@@ -1,9 +1,9 @@
 @extends('../layouts/main')
 
-@push('css')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.2/datatables.min.css"/>
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css"> --}}
-@endpush
+{{-- @push('css')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+@endpush --}}
 
 @section('content')
 <div class="content-wrapper">
@@ -102,6 +102,6 @@
 </div>
     
 @endsection
-@push('scripts')
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> --}}
-@endpush
+{{-- @push('scripts')
+
+@endpush --}}
