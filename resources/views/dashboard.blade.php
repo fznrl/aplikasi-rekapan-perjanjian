@@ -40,7 +40,7 @@
                @endphp
                <h3>{{ $count }}</h3>
  
-               <p>Total Perjanjian Kurang dari 1 Bulan</p>
+               <p>Perjanjian Kurang dari 1 Bulan</p>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-file-circle-exclamation"></i>
