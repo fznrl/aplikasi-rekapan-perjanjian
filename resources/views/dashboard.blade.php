@@ -88,7 +88,7 @@
                 <i class="fa-solid fa-file-lines"></i>
                 
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('perjanjian', ['slug'=>$item->slug, 'id'=>$item->id]) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
          @endforeach
