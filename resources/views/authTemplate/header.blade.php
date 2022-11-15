@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{ asset('') }}assets/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="{{ asset('') }}assets/dist/img/pelindo.png" rel="shortcut icon">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">

@@ -6,6 +6,11 @@
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 <link rel="stylesheet" href="resources/css/swiper.css">
+<style>
+  .swiper-slide{
+    min-width: 300px;
+  }
+</style>
 @endpush
 
 @section('content')
@@ -23,7 +28,7 @@
     </section>
 
     <section class="content">
-      <div class="swiper mySwiper container-fluid">
+      <div class="swiper mySwiper">
         <!-- Small boxes (Stat box) -->
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -38,7 +43,7 @@
                <p>Total Perjanjian Kurang dari 1 Bulan</p>
               </div>
               <div class="icon">
-                <i class="fa-solid fa-exclamation"></i>
+                <i class="fa-solid fa-file-circle-exclamation"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -64,12 +69,13 @@
          @php
             $category = new App\Models\Category;
             $categoryList = $category::all();
+            $bg = ['bg-primary', 'bg-success', 'bg-warning', 'bg-danger', 'bg-info', 'bg-secondary'];
          @endphp
 
          @foreach ($categoryList as $item)    
           <div class="swiper-slide">
             <!-- small box -->
-            <div class="small-box" style="background-color: rgba({{ rand(0,255) }}, {{ rand(0,255) }}, {{ rand(0,255) }}, 1)">
+            <div class="small-box {{ $bg[$item->id%count($bg)] }}">  
               <div class="inner">
                 @php
                   $count = DB::table('perjanjians')->where('category_id', $item->id)->count();
@@ -79,121 +85,13 @@
               <p>{{ $item->name }}</p>
               </div>
               <div class="icon">
-                <i class="fa-solid fa-s"><i class="fa-solid fa-p"></i></i>
+                <i class="fa-solid fa-file-lines"></i>
                 
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
          @endforeach
-         <!-- ./col -->
-         {{-- <!-- ./col -->
-         <div class="swiper-slide">
-           <!-- small box -->
-           <div class="small-box bg-warning">
-             <div class="inner">
-              @php
-                $count = DB::table('perjanjians')->where('category_id', 2)->count();
-              @endphp
-              <h3>{{ $count }}</h3>
-
-              <p>Novasi ke PMS</p>
-             </div>
-             <div class="icon">
-              <i class="fa-solid fa-n"></i>
-             </div>
-             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-           </div>
-         </div>
-         <!-- ./col -->
-         <div class="swiper-slide">
-           <!-- small box -->
-           <div class="small-box bg-danger">
-             <div class="inner">
-              @php
-                $count = DB::table('perjanjians')->where('category_id', 3)->count();
-              @endphp
-              <h3>{{ $count }}</h3>
-
-              <p>Tuks dan Tersus</p>
-             </div>
-             <div class="icon">
-              <i class="fa-solid fa-t"></i>
-             </div>
-             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-           </div>
-         </div>
-         <div class="swiper-slide">
-          <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              @php
-                // $perjanjian = new App\Models\Perjanjian;
-                // $perjanjians = $perjanjian::all();
-                $count = DB::table('perjanjians')->where('category_id', 4)->count();
-              @endphp
-              <h3>{{ $count }}</h3>
-
-              <p>PT. ISMA</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              @php
-                $count = DB::table('perjanjians')->where('category_id', 5)->count();
-              @endphp
-              <h3>{{ $count }}</h3>
-
-              <p>Koperasi dan Arta</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <!-- small box -->
-          <div class="small-box bg-secondary">
-            <div class="inner">
-              @php
-                $count = DB::table('perjanjians')->where('category_id', 6)->count();
-              @endphp
-              <h3>{{ $count }}</h3>
-
-              <p>KUPP</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              @php
-                $count = DB::table('perjanjians')->where('category_id', 7)->count();
-              @endphp
-              <h3>{{ $count }}</h3>
-
-              <p>Sewa Rumah</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         <!-- ./col --> --}}
        </div>
        <!-- /.row -->
        <!-- Main row -->
@@ -212,8 +110,8 @@
         </button>
       </div>
       @endif
-      <div class="">
-        <div class="">
+      {{-- <div class="">
+        <div class=""> --}}
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Rekapan Perjanjian</h3>
@@ -294,9 +192,9 @@
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-        </div>
+        {{-- </div>
         <!-- /.col -->
-      </div>
+      </div> --}}
       <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
