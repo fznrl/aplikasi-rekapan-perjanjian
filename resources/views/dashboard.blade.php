@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="resources/css/swiper.css">
 <style>
   .swiper-slide{
-    min-width: 300px;
+    min-width: 300px;        
   }
 </style>
 @endpush
@@ -28,6 +28,7 @@
     </section>
 
     <section class="content">
+      <div class="container-fluid">
       <div class="swiper mySwiper">
         <!-- Small boxes (Stat box) -->
         <div class="swiper-wrapper">
@@ -99,6 +100,7 @@
        <div class="swiper-button-prev"></div>
        <div class="swiper-pagination"></div>
       </div>
+    </div>
     </section>
     <section class="content">
     <div class="container-fluid">
