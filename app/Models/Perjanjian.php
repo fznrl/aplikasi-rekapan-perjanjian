@@ -15,4 +15,9 @@ class Perjanjian extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->phone_number;
+    }
+
 }

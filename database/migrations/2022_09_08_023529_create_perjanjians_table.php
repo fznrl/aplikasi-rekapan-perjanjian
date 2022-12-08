@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('no_pks');
             $table->date('mulai');
             $table->date('berakhir');
-            $table->integer('sisa_waktu');
+            // $table->integer('sisa_waktu');
             $table->string('wilayah');
             $table->text('kegiatan');
             $table->text('keterangan')->nullable();

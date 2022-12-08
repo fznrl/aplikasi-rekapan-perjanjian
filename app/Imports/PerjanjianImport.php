@@ -33,10 +33,10 @@ class PerjanjianImport implements ToModel, WithHeadingRow
             'kegiatan'        => $row['kegiatan'],
             'keterangan'      => $row['keterangan']
         ];
-        $mulai = new DateTime($data['mulai']);
-        $akhir = new DateTime($data['berakhir']);
-        $sel = $akhir->diff($mulai)->days;
-        $data['sisa_waktu'] = $sel;
+        // $mulai = new DateTime($data['mulai']);
+        // $akhir = new DateTime($data['berakhir']);
+        // $sel = $akhir->diff($mulai)->days;
+        // $data['sisa_waktu'] = $sel;
         
         return new Perjanjian($data);
 

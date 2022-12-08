@@ -51,11 +51,11 @@ class PerjanjianController extends Controller
             'kegiatan' => 'required',
             'keterangan' => '',
         ]);
-        $mulai = new DateTime($validateData['mulai']);
-        $akhir = new DateTime($validateData['berakhir']);
-        $sel = $akhir->diff($mulai)->days;
+        // $mulai = new DateTime($validateData['mulai']);
+        // $akhir = new DateTime($validateData['berakhir']);
+        // $sel = ($akhir->diff($mulai)->days)-1;
 
-        $validateData['sisa_waktu'] = $sel;
+        // $validateData['sisa_waktu'] = $sel;
 
         Perjanjian::create($validateData);
 
@@ -87,7 +87,7 @@ class PerjanjianController extends Controller
             'berakhir' => 'required',
             'wilayah' => 'required',
             'kegiatan' => 'required',
-            'keterangan' => 'required',
+            'keterangan' => '',
         ]);
 
         $perjanjian->update($validateData);
@@ -122,5 +122,10 @@ class PerjanjianController extends Controller
         Excel::import(new PerjanjianImport,request()->file('file'));
         return back();
     }
+
+    public function notif(){
+        return view('notiftes');
+    }
+
 }
     

@@ -36,9 +36,11 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-               @php
-                 $count = DB::table('perjanjians')->where('sisa_waktu', "<=", 30)->count();
-               @endphp
+                @php
+                  $now = new DateTime();
+                  $count = DB::table('perjanjians')->where('berakhir', "<=", $now)->count();
+                @endphp
+                    {{-- <td>{{ $now  > $akhir ? ($sel * -1) : $sel}} hari</td> --}}
                <h3>{{ $count }}</h3>
  
                <p>Perjanjian Kurang dari 1 Bulan</p>
@@ -141,6 +143,9 @@
                     </div>
                   </div>
                 </div>
+                {{-- <a href="{{ 'notif' }}">
+                <button type="button">notif</button>
+              </a> --}}
               </div>
               <table id="myTable" class="table table-bordered table-riped" role="grid" style="width: 100%">
                 <thead>
@@ -167,7 +172,12 @@
                         <td>{{ $perjanjian->no_pks }}</td>
                         <td>{{ $perjanjian->mulai }}</td>
                         <td>{{ $perjanjian->berakhir }}</td>
-                        <td>{{ $perjanjian->sisa_waktu.' hari'}}</td>
+                        @php
+                              $now = new DateTime();
+                              $akhir = new DateTime($perjanjian->berakhir);
+                              $sel = ($akhir->diff($now)->days);
+                        @endphp
+                        <td>{{ $now  > $akhir ? ($sel * -1) : $sel}} hari</td>
                         <td>{{ $perjanjian->wilayah }}</td>
                         <td>{{ $perjanjian->kegiatan }}</td>
                         <td>{{ $perjanjian->keterangan }}</td>
